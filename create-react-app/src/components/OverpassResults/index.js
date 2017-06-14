@@ -1,6 +1,10 @@
 import React from 'react';
 import overpassService from '../../services/overpass';
 
+import Map from '../Map';
+
+import './style.css';
+
 class OverpassResults extends React.Component {
   constructor(props) {
     super(props);
@@ -12,14 +16,15 @@ class OverpassResults extends React.Component {
   componentWillMount() {
     overpassService.getOverpassData()
       .then((data) => {
-        this.setState({data: JSON.stringify(data)})
+        this.setState({data: data})
       });
   }
 
   render() {
     return (
       <div className="OverpassResults">
-        { this.state.data }
+        <Map id="map-overpass" geojson={this.state.data} />
+        {JSON.stringify(this.state.data)}
       </div>
     );
   }

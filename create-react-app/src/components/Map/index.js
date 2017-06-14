@@ -19,21 +19,22 @@ class Map extends React.Component {
     super(props);
     this.markers = [];
     this.map = {};
+    this.geojson = {};
   }
 
   removeMarkers() {
-    this.markers.forEach(marker => marker.removeFrom(this.map));
+    this.markers.forEach(marker => marker.remove());
+    this.markers = [];
   }
 
-  displayMarkers(markers) {
+  displayMarkers(data) {
     this.removeMarkers();
-    markers.forEach(marker => {
-      this.markers.push(
-        L.marker([marker.lat, marker.lon])
-          .addTo(this.map)
-          .bindPopup(marker.display_name)
-      );
-    })
+    this.markers = data.map(item => L.marker([item.lat, item.lon]).addTo(this.map).bindPopup(item.display_name));
+  }
+
+  displayGeoJSON(geojson) {
+    // this.geojson.removeFrom(this.map);
+    this.geojson = L.geoJSON(geojson).addTo(this.map);
   }
 
   componentDidMount() {
@@ -43,12 +44,14 @@ class Map extends React.Component {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
 
-    this.props.markers && this.displayMarkers(this.props.markers);
+    this.props.dataMarkers && this.displayMarkers(this.props.dataMarkers);
+    this.props.geojson && this.displayGeoJSON(this.props.geojson);
 
   }
 
   componentWillReceiveProps(nextProps) {
-    this.props.markers !== nextProps.markers && this.displayMarkers(nextProps.markers);
+    this.props.dataMarkers !== nextProps.dataMarkers && this.displayMarkers(nextProps.dataMarkers);
+    this.props.geojson !== nextProps.geojson && this.displayGeoJSON(nextProps.geojson);
   }
 
   shouldComponentUpdate() {

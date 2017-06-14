@@ -57,7 +57,7 @@ class Nominatim extends React.Component {
         <NominatimResults data={this.state.data} />
         {
           this.state.data.length > 0 &&
-          <Map id="map-nominatim" markers={this.state.data} />
+          <Map id="map-nominatim" dataMarkers={this.state.data} />
         }
       </div>
     );
