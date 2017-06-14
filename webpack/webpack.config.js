@@ -9,6 +9,11 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/'
   },
+  devServer: {
+    hot: true,
+    contentBase: 'public',
+    publicPath: '/'
+  },
   devtool: 'source-map',
   module: {
     loaders: [
@@ -28,5 +33,10 @@ module.exports = {
         ],
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+  ],
+
 }
