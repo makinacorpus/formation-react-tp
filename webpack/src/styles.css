@@ -2,3 +2,7 @@
 .HelloWorld {
   background-color: red;
 }
+
+.OverpassResults {
+  min-height: 300px;
+}

@@ -10,7 +10,8 @@
   "author": "Mathieu DARTIGUES",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.16.2"
+    "axios": "^0.16.2",
+    "osmtogeojson": "^3.0.0-beta.2"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
