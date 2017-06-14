@@ -1,7 +1,10 @@
 import React from 'react';
 import nominatimService from '../../services/nominatim';
 
-class NominatimResults extends React.Component {
+import NominatimForm from './NominatimForm';
+import NominatimResults from './NominatimResults';
+
+class Nominatim extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,24 +30,16 @@ class NominatimResults extends React.Component {
   }
   render() {
     return (
-      <div className="NominatimResults">
-        <form>
-          <label htmlFor="search">Search</label>
-          <input type="text" id="search" onChange={this.handleChange} value={this.state.value}/>
-          <input type="submit" onClick={this.handleSubmit} value="Search"/>
-        </form>
-        <ul>
-          {
-            this.state.data.map((currentResult, index) => (
-              <li key={index}>
-                {currentResult.display_name} ({currentResult.lat}, {currentResult.lon})
-              </li>
-            ))
-          }
-        </ul>
+      <div className="Nominatim">
+        <NominatimForm
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          inputValue={this.state.value}
+        />
+        <NominatimResults data={this.state.data} />
       </div>
     );
   }
 }
 
-export default NominatimResults;
+export default Nominatim;

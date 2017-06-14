@@ -1,6 +1,6 @@
 import React from 'react';
 import HelloWorld from './components/HelloWorld/';
-import NominatimResults from './components/NominatimResults/';
+import Nominatim from './components/Nominatim/';
 import OverpassResults from './components/OverpassResults/';
 
 import './App.css';
@@ -10,8 +10,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <HelloWorld name="World !" />
-        NominatimResults
-        <NominatimResults />
+        Nominatim
+        <Nominatim />
         OverpassResults
         <OverpassResults />
       </div>
