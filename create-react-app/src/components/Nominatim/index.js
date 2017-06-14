@@ -5,6 +5,8 @@ import NominatimForm from './NominatimForm';
 import NominatimFormUncontrolled from './NominatimFormUncontrolled';
 import NominatimResults from './NominatimResults';
 
+import Map from '../Map';
+
 class Nominatim extends React.Component {
   constructor(props) {
     super(props);
@@ -53,6 +55,10 @@ class Nominatim extends React.Component {
           handleInput={this.handleInput}
         />
         <NominatimResults data={this.state.data} />
+        {
+          this.state.data.length > 0 &&
+          <Map id="map-nominatim" markers={this.state.data} />
+        }
       </div>
     );
   }
