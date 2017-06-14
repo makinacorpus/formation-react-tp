@@ -2,6 +2,7 @@ import React from 'react';
 import nominatimService from '../../services/nominatim';
 
 import NominatimForm from './NominatimForm';
+import NominatimFormUncontrolled from './NominatimFormUncontrolled';
 import NominatimResults from './NominatimResults';
 
 class Nominatim extends React.Component {
@@ -11,8 +12,11 @@ class Nominatim extends React.Component {
       data: [],
       value: 'Toulouse'
     }
+    this.input = {};
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitControlled = this.handleSubmitControlled.bind(this);
+    this.handleSubmitUncontrolled = this.handleSubmitUncontrolled.bind(this);
+    this.handleInput = this.handleInput.bind(this);
   }
   componentWillMount() {
     this.getNominatimData(this.state.value);
@@ -20,9 +24,16 @@ class Nominatim extends React.Component {
   handleChange(e) {
     this.setState({ value: e.target.value });
   }
-  handleSubmit(e) {
+  handleInput(input) {
+    this.input = input;
+  }
+  handleSubmitControlled(e) {
     e.preventDefault();
     this.getNominatimData(this.state.value);
+  }
+  handleSubmitUncontrolled(e) {
+    e.preventDefault();
+    this.getNominatimData(this.input.value);
   }
   getNominatimData(search) {
     nominatimService.getNominatimData(search)
@@ -32,9 +43,14 @@ class Nominatim extends React.Component {
     return (
       <div className="Nominatim">
         <NominatimForm
-          handleSubmit={this.handleSubmit}
+          handleSubmit={this.handleSubmitControlled}
           handleChange={this.handleChange}
           inputValue={this.state.value}
+        />
+        <NominatimFormUncontrolled
+          handleSubmit={this.handleSubmitUncontrolled}
+          inputValue={this.state.value}
+          handleInput={this.handleInput}
         />
         <NominatimResults data={this.state.data} />
       </div>
