@@ -1,8 +1,11 @@
 import React from 'react';
 
+import {Card, CardTitle, CardText} from 'material-ui/Card';
+
 import NominatimForm from './NominatimForm';
 import NominatimFormUncontrolled from './NominatimFormUncontrolled';
-import NominatimResults from './NominatimResults';
+
+import './style.css';
 
 function Nominatim({
   handleSubmitControlled,
@@ -13,19 +16,33 @@ function Nominatim({
   data
 }) {
   return (
-    <div className="Nominatim">
-      <NominatimForm
-        handleSubmit={handleSubmitControlled}
-        handleChange={handleChange}
-        inputValue={inputValue}
-      />
-      <NominatimFormUncontrolled
-        handleSubmit={handleSubmitUncontrolled}
-        inputValue={inputValue}
-        handleInput={handleInput}
-      />
-      <NominatimResults data={data} />
-    </div>
+    <Card className="Nominatim" style={{
+      position: 'absolute',
+      top: 0,
+      botto: 0,
+      margin: 12,
+      width: '400px',
+      zIndex: 10000
+    }}>
+      <CardTitle
+        title="Rechercher une adresse"
+        titleStyle={{fontSize: 16}}
+        titleColor="#006064" />
+      <CardText>
+        Form controlled
+        <NominatimForm
+          handleSubmit={handleSubmitControlled}
+          handleChange={handleChange}
+          inputValue={inputValue}
+        />
+        Form uncontrolled
+        <NominatimFormUncontrolled
+          handleSubmit={handleSubmitUncontrolled}
+          inputValue={inputValue}
+          handleInput={handleInput}
+        />
+      </CardText>
+    </Card>
   );
 }
 

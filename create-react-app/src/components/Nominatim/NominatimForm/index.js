@@ -1,11 +1,22 @@
 import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 function NominatimForm(props) {
   return (
     <form className="NominatimForm">
-      <label htmlFor="search">Search</label>
-      <input type="text" id="search" onChange={props.handleChange} value={props.inputValue}/>
-      <input type="submit" onClick={props.handleSubmit} value="Search"/>
+      <TextField
+        type="text"
+        id="search-controlled"
+        onChange={props.handleChange}
+        value={props.inputValue}
+      />
+      <RaisedButton
+        label="Search"
+        type="submit"
+        onClick={props.handleSubmit}
+        primary={true}
+      />
     </form>
   );
 }

@@ -1,15 +1,23 @@
 import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 class NominatimFormUncontrolled extends React.Component {
   render() {
     return (
       <form className="NominatimFormUncontrolled">
-        <label htmlFor="search">Search</label>
-        <input type="text"
+        <TextField
+          type="text"
+          id="search"
           defaultValue={this.props.inputValue}
           ref={(input) => this.props.handleInput(input) }
         />
-        <input type="submit" onClick={this.props.handleSubmit} value="Search Uncontrolled"/>
+        <RaisedButton
+          label="Search"
+          type="submit"
+          onClick={this.props.handleSubmit}
+          primary={true}
+        />
       </form>
     );
   }

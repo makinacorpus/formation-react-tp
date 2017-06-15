@@ -33,7 +33,8 @@ class Map extends React.Component {
   }
 
   displayGeoJSON(geojson) {
-    // this.geojson.removeFrom(this.map);
+    if (typeof this.geojson === L.GeoJSON)
+      this.geojson.removeFrom(this.map);
     this.geojson = L.geoJSON(geojson).addTo(this.map);
   }
 
