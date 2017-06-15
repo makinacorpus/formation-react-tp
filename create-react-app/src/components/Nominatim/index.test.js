@@ -3,9 +3,6 @@ import Nominatim from './';
 
 import renderer from 'react-test-renderer';
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
-
 it('renders correctly to snapshot', () => {
   const tree = renderer.create(
     <Nominatim />

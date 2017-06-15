@@ -104,8 +104,8 @@ exports[`renders correctly to snapshot 1`] = `
             onFocus={[Function]}
             style={
               Object {
+                "WebkitOpacity": 1,
                 "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-                "WebkitTextFillColor": "rgba(0, 0, 0, 0.87)",
                 "appearance": "textfield",
                 "backgroundColor": "rgba(0,0,0,0)",
                 "border": "none",
@@ -128,7 +128,8 @@ exports[`renders correctly to snapshot 1`] = `
               aria-hidden="true"
               style={
                 Object {
-                  "borderBottom": "solid 1px",
+                  "borderBottomStyle": "solid",
+                  "borderBottomWidth": 1,
                   "borderColor": "#e0e0e0",
                   "borderLeft": "none",
                   "borderRight": "none",
@@ -146,7 +147,8 @@ exports[`renders correctly to snapshot 1`] = `
               aria-hidden="true"
               style={
                 Object {
-                  "borderBottom": "solid 2px",
+                  "borderBottomStyle": "solid",
+                  "borderBottomWidth": 2,
                   "borderColor": "#00bcd4",
                   "borderLeft": "none",
                   "borderRight": "none",
@@ -303,8 +305,8 @@ exports[`renders correctly to snapshot 1`] = `
             onFocus={[Function]}
             style={
               Object {
+                "WebkitOpacity": 1,
                 "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-                "WebkitTextFillColor": "rgba(0, 0, 0, 0.87)",
                 "appearance": "textfield",
                 "backgroundColor": "rgba(0,0,0,0)",
                 "border": "none",
@@ -326,7 +328,8 @@ exports[`renders correctly to snapshot 1`] = `
               aria-hidden="true"
               style={
                 Object {
-                  "borderBottom": "solid 1px",
+                  "borderBottomStyle": "solid",
+                  "borderBottomWidth": 1,
                   "borderColor": "#e0e0e0",
                   "borderLeft": "none",
                   "borderRight": "none",
@@ -344,7 +347,8 @@ exports[`renders correctly to snapshot 1`] = `
               aria-hidden="true"
               style={
                 Object {
-                  "borderBottom": "solid 2px",
+                  "borderBottomStyle": "solid",
+                  "borderBottomWidth": 2,
                   "borderColor": "#00bcd4",
                   "borderLeft": "none",
                   "borderRight": "none",
@@ -579,8 +583,8 @@ exports[`renders correctly to snapshot 2`] = `
             onFocus={[Function]}
             style={
               Object {
+                "WebkitOpacity": 1,
                 "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-                "WebkitTextFillColor": "rgba(0, 0, 0, 0.87)",
                 "appearance": "textfield",
                 "backgroundColor": "rgba(0,0,0,0)",
                 "border": "none",
@@ -603,7 +607,8 @@ exports[`renders correctly to snapshot 2`] = `
               aria-hidden="true"
               style={
                 Object {
-                  "borderBottom": "solid 1px",
+                  "borderBottomStyle": "solid",
+                  "borderBottomWidth": 1,
                   "borderColor": "#e0e0e0",
                   "borderLeft": "none",
                   "borderRight": "none",
@@ -621,7 +626,8 @@ exports[`renders correctly to snapshot 2`] = `
               aria-hidden="true"
               style={
                 Object {
-                  "borderBottom": "solid 2px",
+                  "borderBottomStyle": "solid",
+                  "borderBottomWidth": 2,
                   "borderColor": "#00bcd4",
                   "borderLeft": "none",
                   "borderRight": "none",
@@ -778,8 +784,8 @@ exports[`renders correctly to snapshot 2`] = `
             onFocus={[Function]}
             style={
               Object {
+                "WebkitOpacity": 1,
                 "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-                "WebkitTextFillColor": "rgba(0, 0, 0, 0.87)",
                 "appearance": "textfield",
                 "backgroundColor": "rgba(0,0,0,0)",
                 "border": "none",
@@ -801,7 +807,8 @@ exports[`renders correctly to snapshot 2`] = `
               aria-hidden="true"
               style={
                 Object {
-                  "borderBottom": "solid 1px",
+                  "borderBottomStyle": "solid",
+                  "borderBottomWidth": 1,
                   "borderColor": "#e0e0e0",
                   "borderLeft": "none",
                   "borderRight": "none",
@@ -819,7 +826,8 @@ exports[`renders correctly to snapshot 2`] = `
               aria-hidden="true"
               style={
                 Object {
-                  "borderBottom": "solid 2px",
+                  "borderBottomStyle": "solid",
+                  "borderBottomWidth": 2,
                   "borderColor": "#00bcd4",
                   "borderLeft": "none",
                   "borderRight": "none",
