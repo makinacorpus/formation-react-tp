@@ -1,33 +1,14 @@
 import React from 'react';
-import overpassService from '../../services/overpass';
-
-import Map from '../Map';
-
 import './style.css';
 
-class OverpassResults extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: []
-    }
-  }
-
-  componentWillMount() {
-    overpassService.getOverpassData()
-      .then((data) => {
-        this.setState({data: data})
-      });
-  }
-
-  render() {
-    return (
-      <div className="OverpassResults">
-        <Map id="map-overpass" geojson={this.state.data} />
-        {JSON.stringify(this.state.data)}
+function OverpassResults({geojson}) {
+  return (
+    <div className="OverpassResults">
+      <div className="results">
+        { JSON.stringify(geojson) }
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default OverpassResults;

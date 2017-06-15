@@ -45,13 +45,13 @@ class Map extends React.Component {
     }).addTo(this.map);
 
     this.props.dataMarkers && this.displayMarkers(this.props.dataMarkers);
-    this.props.geojson && this.displayGeoJSON(this.props.geojson);
+    this.props.dataGeojson && this.displayGeoJSON(this.props.dataGeojson);
 
   }
 
   componentWillReceiveProps(nextProps) {
     this.props.dataMarkers !== nextProps.dataMarkers && this.displayMarkers(nextProps.dataMarkers);
-    this.props.geojson !== nextProps.geojson && this.displayGeoJSON(nextProps.geojson);
+    this.props.dataGeojson !== nextProps.dataGeojson && this.displayGeoJSON(nextProps.dataGeojson);
   }
 
   shouldComponentUpdate() {
