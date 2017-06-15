@@ -7,3 +7,12 @@ exports[`renders correctly to snapshot 1`] = `
   Hello 
 </div>
 `;
+
+exports[`renders correctly to snapshot 2`] = `
+<div
+  className="HelloWorld"
+>
+  Hello 
+  world
+</div>
+`;
