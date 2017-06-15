@@ -38,26 +38,30 @@ class Map extends React.Component {
     this.geojson = L.geoJSON(geojson).addTo(this.map);
   }
 
+  dispatchBBox(bbox) {
+    this.props.changeBBox && this.props.changeBBox(bbox);
+  }
+
   componentDidMount() {
     this.map = L.map(this.props.id).setView([43.604268, 1.441019], 13);
 
     this.map.on('zoomend moveend', () => {
-      this.props.changeBBox(this.map.getBounds());
+      this.dispatchBBox(this.map.getBounds());
     });
-    this.props.changeBBox(this.map.getBounds());
+    this.dispatchBBox(this.map.getBounds());
 
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
 
-    this.props.dataMarkers && this.displayMarkers(this.props.dataMarkers);
-    this.props.dataGeojson && this.displayGeoJSON(this.props.dataGeojson);
+    !!this.props.dataMarkers && this.displayMarkers(this.props.dataMarkers);
+    !!this.props.dataGeojson && this.displayGeoJSON(this.props.dataGeojson);
 
   }
 
   componentWillReceiveProps(nextProps) {
-    this.props.dataMarkers !== nextProps.dataMarkers && this.displayMarkers(nextProps.dataMarkers);
-    this.props.dataGeojson !== nextProps.dataGeojson && this.displayGeoJSON(nextProps.dataGeojson);
+    !!this.props.dataMarkers !== nextProps.dataMarkers && this.displayMarkers(nextProps.dataMarkers);
+    !!this.props.dataGeojson !== nextProps.dataGeojson && this.displayGeoJSON(nextProps.dataGeojson);
   }
 
   shouldComponentUpdate() {
