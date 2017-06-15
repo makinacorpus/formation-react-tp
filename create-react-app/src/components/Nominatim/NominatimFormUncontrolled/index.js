@@ -10,7 +10,7 @@ class NominatimFormUncontrolled extends React.Component {
           type="text"
           id="search"
           defaultValue={this.props.inputValue}
-          ref={(input) => this.props.handleInput(input) }
+          ref={(input) => this.props.handleInput && this.props.handleInput(input) }
         />
         <RaisedButton
           label="Search"
