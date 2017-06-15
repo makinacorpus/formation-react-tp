@@ -40,6 +40,11 @@ class Map extends React.Component {
   componentDidMount() {
     this.map = L.map(this.props.id).setView([43.604268, 1.441019], 13);
 
+    this.map.on('zoomend moveend', () => {
+      this.props.changeBBox(this.map.getBounds());
+    });
+    this.props.changeBBox(this.map.getBounds());
+
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);

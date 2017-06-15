@@ -15,13 +15,13 @@ class App extends React.Component {
     search: 'Toulouse',
     markers: [],
     geojson: undefined,
-    loading: true
+    loading: true,
+    bbox: undefined
   };
   inputUncontrolled = {};
 
   componentWillMount() {
     this.getNominatimData(this.state.value);
-    this.getGeoJSONData();
   }
   handleChange = (e) => {
     this.setState({ value: e.target.value });
@@ -37,13 +37,16 @@ class App extends React.Component {
     e.preventDefault();
     this.getNominatimData(this.inputUncontrolled.value);
   }
+  handleChangeBBox = (bbox) => {
+    this.setState({ bbox: bbox}, this.getGeoJSONData);
+  }
   getNominatimData(search) {
     nominatimService.getNominatimData(search)
       .then((markers) => this.setState({markers: markers}));
   }
   getGeoJSONData() {
     this.setState({ loading: true });
-    overpassService.getOverpassData()
+    overpassService.getOverpassData(this.state.bbox)
       .then((geojson) => {
         this.setState({
           geojson: geojson,
@@ -65,6 +68,7 @@ class App extends React.Component {
           inputValue={this.state.search}
           data={this.state.markers}
         />
+
         OverpassResults
         <OverpassResults
           geojson={this.state.geojson}
@@ -74,6 +78,7 @@ class App extends React.Component {
           id="map"
           dataMarkers={this.state.markers}
           dataGeojson={this.state.geojson}
+          changeBBox={this.handleChangeBBox}
         />
       </div>
     );
