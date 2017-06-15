@@ -1,18 +1,28 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, compose } from 'redux';
 
 import nominatim from './nominatim/reducers';
 import overpass from './overpass/reducers';
 
-export const store = createStore(combineReducers({
-  nominatim,
-  overpass
-}));
+let enhancerArray = [];
+
+if (process.env.NODE_ENV !== 'production') {
+  enhancerArray.push(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+}
+
+const enhancer = compose(...enhancerArray);
+const store = createStore(
+  combineReducers({
+    nominatim,
+    overpass
+  }),
+  enhancer
+);
 
 window.store = store;
 
 store.dispatch({
   type: 'SET_SEARCH',
-  payload: 'Read the docs'
+  payload: 'Toulouse'
 });
 
 export default store;
