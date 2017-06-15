@@ -1,3 +1,5 @@
+import overpassService from '../../services/overpass';
+
 export const SET_BBOX = 'SET_BBOX';
 export const FETCH_RESULTS_OVERPASS = 'FETCH_RESULTS_OVERPASS';
 export const SET_RESULTS_OVERPASS = 'SET_RESULTS_OVERPASS';
@@ -15,8 +17,19 @@ export const fetchOverpassResults = () => {
   }
 }
 
-export const setOverpassResults = () => {
+export const setOverpassResults = (results) => {
   return {
-    type: SET_RESULTS_OVERPASS
+    type: SET_RESULTS_OVERPASS,
+    payload: results
+  }
+}
+
+export const loadOverpassResults = () => {
+  return (dispatch, getState) => {
+    dispatch(fetchOverpassResults());
+      return overpassService.getOverpassData(getState().overpass.bbox)
+        .then((geojson) => {
+          dispatch(setOverpassResults(geojson))
+        });
   }
 }
