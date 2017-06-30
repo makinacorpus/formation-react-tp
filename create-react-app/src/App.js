@@ -2,11 +2,10 @@ import React from 'react';
 import Nominatim from './components/Nominatim/';
 import Map from './components/Map/';
 
-import nominatimService from './services/nominatim';
-import overpassService from './services/overpass';
-
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 
+import { updateSearch, loadNominatimResults } from './store/nominatim/actions';
+import { loadOverpassResults } from './store/overpass/actions';
 import { connect } from 'react-redux';
 
 import './App.css';
@@ -15,59 +14,23 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 export class AppView extends React.Component {
-  state = {
-    search: 'Toulouse',
-    markers: [],
-    geojson: undefined,
-    loading: 'hide',
-    bbox: undefined
-  };
   inputUncontrolled = {};
 
-  componentWillMount() {
-    this.getNominatimData(this.state.search);
-  }
-  handleChange = (e) => {
-    this.setState({ search: e.target.value });
-  }
   handleInput = (input) => {
     this.inputUncontrolled = input;
-  }
-  handleSubmitControlled = (e) => {
-    e.preventDefault();
-    this.getNominatimData(this.state.search);
-  }
-  handleSubmitUncontrolled = (e) => {
-    e.preventDefault();
-    this.getNominatimData(this.inputUncontrolled.value);
-  }
-  handleChangeBBox = (bbox) => {
-    this.setState({ bbox: bbox}, this.getGeoJSONData);
-  }
-  getNominatimData(search) {
-    nominatimService.getNominatimData(search)
-      .then((markers) => this.setState({markers: markers}));
-  }
-  getGeoJSONData() {
-    this.setState({ loading: 'loading' });
-    overpassService.getOverpassData(this.state.bbox)
-      .then((geojson) => {
-        this.setState({
-          geojson: geojson,
-          loading: 'hide'
-        })
-      });
   }
 
   render() {
     return (
       <div className="App">
         <Nominatim
-          handleSubmitControlled={this.handleSubmitControlled}
-          handleSubmitUncontrolled={this.handleSubmitUncontrolled}
-          handleChange={this.handleChange}
+          handleSubmitControlled={this.props.loadResults.bind(this)}
+          handleSubmitUncontrolled={() => {
+            this.props.updateSearch(this.inputUncontrolled.value);
+            this.props.loadResults();
+          }}
+          handleChange={this.props.updateSearch.bind(this)}
           handleInput={this.handleInput}
-          data={this.props.nominatim.results}
           inputValue={this.props.nominatim.search}
         />
 
@@ -75,7 +38,7 @@ export class AppView extends React.Component {
           id="map"
           dataMarkers={this.props.nominatim.results}
           dataGeojson={this.props.overpass.results}
-          changeBBox={this.handleChangeBBox}
+          changeBBox={this.props.handleChangeBBox}
         />
 
         <RefreshIndicator
@@ -108,6 +71,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    updateSearch: search => dispatch(updateSearch(search)),
+    loadResults: () => dispatch(loadNominatimResults()),
+    handleChangeBBox: (bbox) => dispatch(loadOverpassResults(bbox))
   }
 }
 

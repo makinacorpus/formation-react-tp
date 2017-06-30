@@ -13,8 +13,7 @@ function Nominatim({
   handleSubmitUncontrolled,
   handleChange,
   handleInput,
-  inputValue,
-  data
+  inputValue
 }) {
   return (
     <MuiThemeProvider>

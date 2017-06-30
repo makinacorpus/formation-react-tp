@@ -24,8 +24,9 @@ export const setOverpassResults = (results) => {
   }
 }
 
-export const loadOverpassResults = () => {
+export const loadOverpassResults = (bbox) => {
   return (dispatch, getState) => {
+    dispatch(updateBbox(bbox));
     dispatch(fetchOverpassResults());
       return overpassService.getOverpassData(getState().overpass.bbox)
         .then((geojson) => {

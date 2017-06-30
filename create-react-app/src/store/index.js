@@ -4,7 +4,6 @@ import thunk from 'redux-thunk';
 import nominatim from './nominatim/reducers';
 import overpass from './overpass/reducers';
 import { loadNominatimResults } from './nominatim/actions';
-import { loadOverpassResults } from './overpass/actions';
 
 let enhancerArray = [
   applyMiddleware(thunk)
@@ -31,6 +30,5 @@ store.dispatch({
 });
 
 store.dispatch(loadNominatimResults());
-store.dispatch(loadOverpassResults());
 
 export default store;

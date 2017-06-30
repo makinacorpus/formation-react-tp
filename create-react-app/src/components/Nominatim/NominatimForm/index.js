@@ -8,13 +8,13 @@ function NominatimForm(props) {
       <TextField
         type="text"
         id="search-controlled"
-        onChange={props.handleChange}
+        onChange={(e) => props.handleChange(e.target.value)}
         value={props.inputValue}
       />
       <RaisedButton
         label="Search"
         type="submit"
-        onClick={props.handleSubmit}
+        onClick={(e) => { e.preventDefault(); props.handleSubmit(); }}
         primary={true}
       />
     </form>

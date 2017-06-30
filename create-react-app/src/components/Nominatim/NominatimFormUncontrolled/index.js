@@ -15,7 +15,7 @@ class NominatimFormUncontrolled extends React.Component {
         <RaisedButton
           label="Search"
           type="submit"
-          onClick={this.props.handleSubmit}
+          onClick={(e) => { e.preventDefault(); this.props.handleSubmit() }}
           primary={true}
         />
       </form>
