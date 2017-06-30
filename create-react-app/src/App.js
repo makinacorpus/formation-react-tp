@@ -67,14 +67,14 @@ export class AppView extends React.Component {
           handleSubmitUncontrolled={this.handleSubmitUncontrolled}
           handleChange={this.handleChange}
           handleInput={this.handleInput}
-          inputValue={this.state.search}
-          data={this.state.markers}
+          data={this.props.nominatim.results}
+          inputValue={this.props.nominatim.search}
         />
 
         <Map
           id="map"
-          dataMarkers={this.state.markers}
-          dataGeojson={this.state.geojson}
+          dataMarkers={this.props.nominatim.results}
+          dataGeojson={this.props.overpass.results}
           changeBBox={this.handleChangeBBox}
         />
 
@@ -83,7 +83,7 @@ export class AppView extends React.Component {
           left={70}
           top={0}
           loadingColor="#FF9800"
-          status={this.state.loading}
+          status={this.props.nominatim.loading}
           style={{
             display: 'inline-block',
             position: 'absolute',
@@ -101,6 +101,8 @@ export class AppView extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    nominatim: state.nominatim,
+    overpass: state.overpass
   }
 }
 

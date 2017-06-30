@@ -31,8 +31,16 @@ describe('<App /> component', () => {
   let Container;
   let Component;
   const store = mockStore({
-    nominatim: {},
-    overpass: {}
+    nominatim: {
+      search: 'Toulouse',
+      results: [],
+      loading: 'hide'
+    },
+    overpass: {
+      bbox: undefined,
+      results: [],
+      loading: 'hide'
+    }
   });
 
   const div = global.document.createElement('div');
