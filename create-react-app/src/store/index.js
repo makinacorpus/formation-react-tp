@@ -3,12 +3,13 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger'
 
 import {loggerMadeByHand} from '../middlewares/loggerMadeByHand';
+import { nominatimMiddleware } from '../middlewares/nominatim';
 import nominatim from './nominatim/reducers';
 import overpass from './overpass/reducers';
 import { loadNominatimResults } from './nominatim/actions';
 
 let enhancerArray = [
-  applyMiddleware(thunk, logger, loggerMadeByHand)
+  applyMiddleware(thunk, logger, loggerMadeByHand, nominatimMiddleware)
 ];
 
 if (process.env.NODE_ENV !== 'production') {
