@@ -1,18 +1,20 @@
 import React from 'react';
 import Nominatim from './components/Nominatim/';
+import Map from './components/Map/';
 
 import nominatimService from './services/nominatim';
 import overpassService from './services/overpass';
 
-import Map from './components/Map/';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
+
+import { connect } from 'react-redux';
 
 import './App.css';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-class App extends React.Component {
+export class AppView extends React.Component {
   state = {
     search: 'Toulouse',
     markers: [],
@@ -97,4 +99,14 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppView);
