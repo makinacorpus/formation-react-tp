@@ -1,12 +1,14 @@
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import logger from 'redux-logger'
 
+import {loggerMadeByHand} from '../middlewares/loggerMadeByHand';
 import nominatim from './nominatim/reducers';
 import overpass from './overpass/reducers';
 import { loadNominatimResults } from './nominatim/actions';
 
 let enhancerArray = [
-  applyMiddleware(thunk)
+  applyMiddleware(thunk, logger, loggerMadeByHand)
 ];
 
 if (process.env.NODE_ENV !== 'production') {
