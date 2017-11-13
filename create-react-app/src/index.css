@@ -3,3 +3,10 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.Menu {
+  position: absolute;
+  z-index: 1000;
+  right: 1em;
+  top: 1em;
+}
