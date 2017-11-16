@@ -27,11 +27,6 @@ const store = createStore(
 
 window.store = store;
 
-store.dispatch({
-  type: 'SET_SEARCH',
-  payload: 'Toulouse'
-});
-
 store.dispatch(loadNominatimResults());
 
 export default store;

@@ -39,15 +39,15 @@ const Routes = ({history}) => {
             }
             primaryText="Home"/>
             <MenuItem
-            disabled={history.location.pathname === '/search'}
+            disabled={history.location.pathname.includes('/search')}
             containerElement={
-              <Link to="/search" />
+              <Link to="/search/Toulouse" />
             }
             primaryText="Map"/>
         </Menu>
       </Paper>
       <Route path="/home" component={Home}/>
-      <Route path="/search" component={App}/>
+      <Route path="/search/:address" component={App}/>
     </div>
   )
 }

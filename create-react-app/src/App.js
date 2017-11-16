@@ -16,6 +16,14 @@ injectTapEventPlugin();
 export class AppView extends React.Component {
   inputUncontrolled = {};
 
+  componentDidMount() {
+    if (this.props.match) {
+      const address = this.props.match.params.address;
+      this.props.updateSearch(address);
+      this.props.loadResults();
+    }
+  }
+
   handleInput = (input) => {
     this.inputUncontrolled = input;
   }
