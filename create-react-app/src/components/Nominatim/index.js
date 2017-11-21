@@ -7,8 +7,6 @@ import NominatimForm from './NominatimForm';
 import NominatimFormUncontrolled from './NominatimFormUncontrolled';
 import i18n from '../../services/i18n';
 
-import './style.css';
-
 function Nominatim({
   handleSubmitControlled,
   handleSubmitUncontrolled,
@@ -20,6 +18,7 @@ function Nominatim({
     <MuiThemeProvider>
       <Card className="Nominatim" style={{
         position: 'absolute',
+        zIndex: 1000,
         top: 0,
         botto: 0,
         margin: 12,
