@@ -10,22 +10,28 @@ import {
   Route,
   Link
 } from 'react-router-dom'
+import { I18nextProvider } from 'react-i18next';
 
 import createBrowserHistory from 'history/createBrowserHistory'
 
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import store from './store/';
+import i18n from './services/i18n'; // initialized i18next instance
 
 import './index.css';
 
 const customHistory = createBrowserHistory()
 
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
-)
+class Home extends React.Component {
+  render() {
+    return (
+      <div>
+        <h2>{i18n.t('home')}</h2>
+      </div>
+    )
+  }
+}
 
 const Routes = ({history}) => {
   return (
@@ -54,11 +60,13 @@ const Routes = ({history}) => {
 
 ReactDOM.render(
   <Provider store={store}>
-    <MuiThemeProvider>
-      <Router history={customHistory}>
-        <Routes history={customHistory} />
-      </Router>
-    </MuiThemeProvider>
+    <I18nextProvider i18n={ i18n }>
+      <MuiThemeProvider>
+        <Router history={customHistory}>
+          <Routes history={customHistory} />
+        </Router>
+      </MuiThemeProvider>
+    </I18nextProvider>
   </Provider>
 , document.getElementById('root'));
 registerServiceWorker();

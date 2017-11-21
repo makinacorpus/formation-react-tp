@@ -51,7 +51,7 @@ exports[`renders correctly to snapshot 1`] = `
           }
         }
       >
-        Rechercher une adresse
+        Search an address
       </span>
       <span
         style={
@@ -530,7 +530,7 @@ exports[`renders correctly to snapshot 2`] = `
           }
         }
       >
-        Rechercher une adresse
+        Search an address
       </span>
       <span
         style={

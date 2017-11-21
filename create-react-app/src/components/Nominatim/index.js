@@ -5,6 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import NominatimForm from './NominatimForm';
 import NominatimFormUncontrolled from './NominatimFormUncontrolled';
+import i18n from '../../services/i18n';
 
 import './style.css';
 
@@ -26,7 +27,7 @@ function Nominatim({
         zIndex: 10000
       }}>
         <CardTitle
-          title="Rechercher une adresse"
+          title={i18n.t('search address')}
           titleStyle={{fontSize: 16}}
           titleColor="#006064" />
         <CardText>
