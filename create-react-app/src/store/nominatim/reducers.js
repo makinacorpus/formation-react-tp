@@ -4,7 +4,7 @@ import {
   SET_RESULTS_NOMINATIM
 } from './actions';
 
-const defaultState = {
+export const defaultState = {
   search: 'Toulouse',
   results: [],
   loading: 'hide'

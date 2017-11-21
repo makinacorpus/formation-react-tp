@@ -8,17 +8,21 @@ import Paper from 'material-ui/Paper';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 
+import { loadNominatimResults } from '../src/store/nominatim/actions';
 import NominatimResults from '../src/components/Nominatim/NominatimResults';
 
 class Nominatim extends React.Component {
-  static getInitialProps ({ store, isServer }) {
-    return { isServer }
+  static async getInitialProps ({ store, isServer }) {
+    await store.dispatch(loadNominatimResults())
   }
 
   render () {
     return (
       <MuiThemeProvider>
-        <p>Nominatim recherche pour : {this.props.nominatim.search}</p>
+        <div>
+          <p>Nominatim recherche pour : {this.props.nominatim.search}</p>
+          <NominatimResults data={this.props.nominatim.results} />
+        </div>
       </MuiThemeProvider>
     )
   }

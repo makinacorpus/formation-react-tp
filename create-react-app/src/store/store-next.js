@@ -4,9 +4,8 @@ import logger from 'redux-logger'
 
 import {loggerMadeByHand} from '../middlewares/loggerMadeByHand';
 import { nominatimMiddleware } from '../middlewares/nominatim';
-import nominatim from './nominatim/reducers';
+import nominatim, {defaultState} from './nominatim/reducers';
 import overpass from './overpass/reducers';
-import { loadNominatimResults } from './nominatim/actions';
 
 let enhancerArray = [
   applyMiddleware(thunk, nominatimMiddleware)
@@ -23,12 +22,12 @@ const store = createStore(
   enhancer
 );
 
-store.dispatch(loadNominatimResults());
-
 const exampleInitialState = {
-  nominatim: {
-    search: 'Toulouse'
-  }
+  defaultState
+}
+
+export const serverRenderClock = (isServer) => dispatch => {
+  return dispatch({ type: actionTypes.TICK, light: !isServer, ts: Date.now() })
 }
 
 export const initStore = (initialState = exampleInitialState) => {
